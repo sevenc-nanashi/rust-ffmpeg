@@ -596,11 +596,8 @@ pub enum Id {
     #[cfg(feature = "ffmpeg_4_4")]
     FASTAUDIO,
 
-    #[cfg(feature = "ffmpeg_5_0")]
     GEM,
-    #[cfg(feature = "ffmpeg_5_0")]
     ADPCM_IMA_ACORN,
-    #[cfg(feature = "ffmpeg_5_0")]
     MSNSIREN,
 
     #[cfg(feature = "ffmpeg_5_1")]
@@ -1216,12 +1213,9 @@ impl From<AVCodecID> for Id {
             #[cfg(feature = "ffmpeg_4_4")]
             AV_CODEC_ID_FASTAUDIO => Id::FASTAUDIO,
 
-            #[cfg(feature = "ffmpeg_5_0")]
-            AV_CODEC_ID_GEM => Id::GEM,
-            #[cfg(feature = "ffmpeg_5_0")]
-            AV_CODEC_ID_ADPCM_IMA_ACORN => Id::ADPCM_IMA_ACORN,
-            #[cfg(feature = "ffmpeg_5_0")]
-            AV_CODEC_ID_MSNSIREN => Id::MSNSIREN,
+                    AV_CODEC_ID_GEM => Id::GEM,
+                    AV_CODEC_ID_ADPCM_IMA_ACORN => Id::ADPCM_IMA_ACORN,
+                    AV_CODEC_ID_MSNSIREN => Id::MSNSIREN,
 
             #[cfg(feature = "ffmpeg_5_1")]
             AV_CODEC_ID_VBN => Id::VBN,
@@ -1828,12 +1822,9 @@ impl From<Id> for AVCodecID {
             #[cfg(feature = "ffmpeg_4_4")]
             Id::FASTAUDIO => AV_CODEC_ID_FASTAUDIO,
 
-            #[cfg(feature = "ffmpeg_5_0")]
-            Id::GEM => AV_CODEC_ID_GEM,
-            #[cfg(feature = "ffmpeg_5_0")]
-            Id::ADPCM_IMA_ACORN => AV_CODEC_ID_ADPCM_IMA_ACORN,
-            #[cfg(feature = "ffmpeg_5_0")]
-            Id::MSNSIREN => AV_CODEC_ID_MSNSIREN,
+                    Id::GEM => AV_CODEC_ID_GEM,
+                    Id::ADPCM_IMA_ACORN => AV_CODEC_ID_ADPCM_IMA_ACORN,
+                    Id::MSNSIREN => AV_CODEC_ID_MSNSIREN,
 
             #[cfg(feature = "ffmpeg_5_1")]
             Id::VBN => AV_CODEC_ID_VBN,

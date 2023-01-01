@@ -1,16 +1,12 @@
 use std::ops::{Deref, DerefMut};
 
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use ffi::*;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use libc::c_int;
 
 use super::Opened;
 use codec::Context;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use frame;
 use util::format;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use {packet, Error};
 use {AudioService, ChannelLayout};
 
@@ -22,8 +18,7 @@ impl Audio {
         note = "Underlying API avcodec_decode_audio4 has been deprecated since FFmpeg 3.1; \
         consider switching to send_packet() and receive_frame()"
     )]
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn decode<P: packet::Ref>(
+        pub fn decode<P: packet::Ref>(
         &mut self,
         packet: &P,
         out: &mut frame::Audio,
@@ -97,8 +92,7 @@ impl Audio {
         unsafe { (*self.as_ptr()).frame_size as u32 }
     }
 
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn frame_start(&self) -> Option<usize> {
+        pub fn frame_start(&self) -> Option<usize> {
         unsafe {
             // Removed in ffmpeg >= 5.0 in favor of using encoder
             // private options.

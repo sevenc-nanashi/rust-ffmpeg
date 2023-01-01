@@ -6,11 +6,9 @@ use libc::{c_float, c_int};
 
 use super::Encoder as Super;
 use super::{Comparison, Decision};
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use super::{MotionEstimation, Prediction};
 use codec::{traits, Context};
 use {color, format, Dictionary, Error, Rational};
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use {frame, packet};
 
 pub struct Video(pub Super);
@@ -200,8 +198,7 @@ impl Video {
     }
 
     #[inline]
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn set_prediction(&mut self, value: Prediction) {
+        pub fn set_prediction(&mut self, value: Prediction) {
         unsafe {
             (*self.as_mut_ptr()).prediction_method = value.into();
         }
@@ -257,8 +254,7 @@ impl Video {
     }
 
     #[inline]
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn set_pre_me(&mut self, value: MotionEstimation) {
+        pub fn set_pre_me(&mut self, value: MotionEstimation) {
         unsafe {
             (*self.as_mut_ptr()).pre_me = value.into();
         }
@@ -427,8 +423,7 @@ impl Encoder {
         consider switching to send_frame() and receive_packet()"
     )]
     #[inline]
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn encode<P: packet::Mut>(
+        pub fn encode<P: packet::Mut>(
         &mut self,
         frame: &frame::Video,
         out: &mut P,
@@ -461,8 +456,7 @@ impl Encoder {
         consider switching to send_frame() and receive_packet()"
     )]
     #[inline]
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn flush<P: packet::Mut>(&mut self, out: &mut P) -> Result<bool, Error> {
+        pub fn flush<P: packet::Mut>(&mut self, out: &mut P) -> Result<bool, Error> {
         unsafe {
             let mut got: c_int = 0;
 

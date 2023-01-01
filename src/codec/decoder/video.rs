@@ -1,17 +1,14 @@
 use std::ops::{Deref, DerefMut};
 
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use ffi::*;
 use libc::c_int;
 
 use super::{slice, Opened};
 use codec::Context;
 use color;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use frame;
 use util::chroma;
 use util::format;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use {packet, Error};
 use {FieldOrder, Rational};
 
@@ -23,8 +20,7 @@ impl Video {
         note = "Underlying API avcodec_decode_video2 has been deprecated since FFmpeg 3.1; \
         consider switching to send_packet() and receive_frame()"
     )]
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn decode<P: packet::Ref>(
+        pub fn decode<P: packet::Ref>(
         &mut self,
         packet: &P,
         out: &mut frame::Video,

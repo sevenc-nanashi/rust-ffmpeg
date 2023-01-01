@@ -4,7 +4,6 @@ use std::str::from_utf8_unchecked;
 
 use super::{Flags, Type};
 use ffi::*;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use {format, Picture};
 
 pub enum Rect<'a> {
@@ -88,8 +87,7 @@ impl<'a> Bitmap<'a> {
     }
 
     // XXX: must split Picture and PictureMut
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn picture(&self, format: format::Pixel) -> Picture<'a> {
+        pub fn picture(&self, format: format::Pixel) -> Picture<'a> {
         unsafe {
             Picture::wrap(
                 &(*self.as_ptr()).pict as *const _ as *mut _,

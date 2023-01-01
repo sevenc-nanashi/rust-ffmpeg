@@ -143,7 +143,6 @@ impl Drop for Context {
     }
 }
 
-#[cfg(not(feature = "ffmpeg_5_0"))]
 impl Clone for Context {
     fn clone(&self) -> Self {
         let mut ctx = Context::new();

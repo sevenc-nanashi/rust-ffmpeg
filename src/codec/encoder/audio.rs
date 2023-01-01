@@ -2,13 +2,11 @@ use std::ops::{Deref, DerefMut};
 use std::ptr;
 
 use ffi::*;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use libc::c_int;
 
 use super::Encoder as Super;
 use codec::{traits, Context};
 use util::format;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use {frame, packet};
 use {ChannelLayout, Dictionary, Error};
 
@@ -148,8 +146,7 @@ impl Encoder {
         note = "Underlying API avcodec_encode_audio2 has been deprecated since FFmpeg 3.1; \
         consider switching to send_frame() and receive_packet()"
     )]
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn encode<P: packet::Mut>(
+        pub fn encode<P: packet::Mut>(
         &mut self,
         frame: &frame::Audio,
         out: &mut P,
@@ -178,8 +175,7 @@ impl Encoder {
         note = "Underlying API avcodec_encode_audio2 has been deprecated since FFmpeg 3.1; \
         consider switching to send_eof() and receive_packet()"
     )]
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn flush<P: packet::Mut>(&mut self, out: &mut P) -> Result<bool, Error> {
+        pub fn flush<P: packet::Mut>(&mut self, out: &mut P) -> Result<bool, Error> {
         unsafe {
             let mut got: c_int = 0;
 

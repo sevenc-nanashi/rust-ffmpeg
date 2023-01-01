@@ -6,7 +6,6 @@ use super::common::Context;
 use super::destructor;
 use ffi::*;
 use util::range::Range;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 use Codec;
 use {format, Error, Packet, Stream};
 
@@ -39,8 +38,7 @@ impl Input {
         unsafe { format::Input::wrap((*self.as_ptr()).iformat as *mut AVInputFormat) }
     }
 
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn video_codec(&self) -> Option<Codec> {
+        pub fn video_codec(&self) -> Option<Codec> {
         unsafe {
             let ptr = (*self.as_ptr()).video_codec;
 
@@ -52,8 +50,7 @@ impl Input {
         }
     }
 
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn audio_codec(&self) -> Option<Codec> {
+        pub fn audio_codec(&self) -> Option<Codec> {
         unsafe {
             let ptr = (*self.as_ptr()).audio_codec;
 
@@ -65,8 +62,7 @@ impl Input {
         }
     }
 
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn subtitle_codec(&self) -> Option<Codec> {
+        pub fn subtitle_codec(&self) -> Option<Codec> {
         unsafe {
             let ptr = (*self.as_ptr()).subtitle_codec;
 
@@ -78,8 +74,7 @@ impl Input {
         }
     }
 
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    pub fn data_codec(&self) -> Option<Codec> {
+        pub fn data_codec(&self) -> Option<Codec> {
         unsafe {
             let ptr = (*self.as_ptr()).data_codec;
 

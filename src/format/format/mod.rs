@@ -7,9 +7,7 @@ pub use self::input::Input;
 mod output;
 pub use self::output::Output;
 
-#[cfg(not(feature = "ffmpeg_5_0"))]
 mod iter;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 pub use self::iter::Iter;
 
 pub enum Format {
@@ -47,7 +45,6 @@ impl Format {
     }
 }
 
-#[cfg(not(feature = "ffmpeg_5_0"))]
 pub fn list() -> Iter {
     Iter::new()
 }

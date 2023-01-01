@@ -10,7 +10,6 @@ pub mod context;
 pub use self::context::Context;
 
 pub mod format;
-#[cfg(not(feature = "ffmpeg_5_0"))]
 pub use self::format::list;
 pub use self::format::{flag, Flags};
 pub use self::format::{Input, Output};
@@ -25,14 +24,12 @@ use std::str::from_utf8_unchecked;
 use ffi::*;
 use {Dictionary, Error, Format};
 
-#[cfg(not(feature = "ffmpeg_5_0"))]
 pub fn register_all() {
     unsafe {
         av_register_all();
     }
 }
 
-#[cfg(not(feature = "ffmpeg_5_0"))]
 pub fn register(format: &Format) {
     match *format {
         Format::Input(ref format) => unsafe {

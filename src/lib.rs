@@ -108,11 +108,9 @@ fn init_filter() {}
 )]
 pub fn init() -> Result<(), Error> {
     init_error();
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    init_format();
+        init_format();
     init_device();
-    #[cfg(not(feature = "ffmpeg_5_0"))]
-    init_filter();
+        init_filter();
 
     Ok(())
 }
